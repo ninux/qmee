@@ -1,0 +1,4 @@
+# ignore all data in the object directory
+*
+*/
+!.gitignore
