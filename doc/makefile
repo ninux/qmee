@@ -17,3 +17,9 @@ clean:
 	rm -f *.toc
 	rm -f *.lot
 	rm -f *.lof
+	rm -f *.acn
+	rm -f *.glo
+	rm -f *.ist
+	rm -f *.maf
+	rm -f *.mtc
+	rm -f *.mtc0
