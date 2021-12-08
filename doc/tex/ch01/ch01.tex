@@ -1,0 +1,40 @@
+\chapter{Introduction}
+
+\section{Exercise 1-1}
+The equation for the momentum
+\begin{equation}
+	p = \frac{h}{\lambda}
+\end{equation}
+has the following dimensions:
+\[
+	\left[\text{momentum}\right] = \frac{\left[\text{energy}\right] \left[\text{time}\right]}{\left[\text{length}\right]}
+\]
+The unit of energy is \si{\joule}, the unit of time is \si{\second}, and the unit of length is \si{\meter}. Hence, we can perform the dimensional analysis directly with the corresponding units which gives
+\[
+	p
+	= \left[ \frac{\si{\joule} \si{\second}}{\si{\meter}} \right]
+	= \left[ \frac{\si{\kilogram\meter\squared\second}}{\si{\second\squared\meter}} \right]
+	= \left[ \frac{\si{\kilogram\meter}}{\si{\second}} \right]
+\]
+
+\section{Exercise 1-2}
+The workfunction $\phi$ of Titanium is
+\[
+	\phi
+	= \SI{4.33}{\eV}
+	= 4.33 \frac{\SI{1.6e-19}{\joule}}{\SI{1}{\eV}}
+	= \SI{6.93e-19}{\joule}
+\]
+The work function $\phi$ describes the amount of energy that is required to free an electron by incident EM radiation (i.e. light). Hence, this is the absolute minimum required energy. Using the generic relation $E - \phi = h f$ we thus get $E - \phi = 0$ and thus $E = \phi$. As we know the energy and Planck's constant, we can solve for the frequency $f$
+\[
+	E = h f \quad \Rightarrow \quad f = \frac{E}{h}
+\]
+However, we are interested in the required frequency of the incident EM radiation. Hence, we use the relation $c_0 = \lambda f$. With this we get
+\[
+	\lambda
+	= \frac{c_0 h}{E}
+	= \frac{\SI{3e8}{\meter\per\second} \cdot \SI{6.625e-34}{\joule\second}}{\SI{6.93e-19}{\joule}}
+	= \SI{2.87e-7}{\meter}
+\]
+
+\lstinputlisting[caption=Exercise 1-1]{./../ch1/ex_1_1.m}
