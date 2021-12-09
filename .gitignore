@@ -5,4 +5,5 @@
 
 # temporary files
 *.bak
+*.*.bak
 *.swp
