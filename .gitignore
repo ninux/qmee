@@ -2,3 +2,7 @@
 *.png
 *.pdf
 *.gif
+
+# temporary files
+*.bak
+*.swp
