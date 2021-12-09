@@ -9,7 +9,9 @@ has the following dimensions:
 \[
 	\left[\text{momentum}\right] = \frac{\left[\text{energy}\right] \left[\text{time}\right]}{\left[\text{length}\right]}
 \]
-The unit of energy is \si{\joule}, the unit of time is \si{\second}, and the unit of length is \si{\meter}. Hence, we can perform the dimensional analysis directly with the corresponding units which gives
+The unit of energy is \si{\joule}, the unit of time is \si{\second}, and the
+unit of length is \si{\meter}. Hence, we can perform the dimensional analysis
+directly with the corresponding units which gives
 \[
 	p
 	= \left[ \frac{\si{\joule} \si{\second}}{\si{\meter}} \right]
@@ -25,11 +27,16 @@ The workfunction $\phi$ of Titanium is
 	= 4.33 \frac{\SI{1.6e-19}{\joule}}{\SI{1}{\eV}}
 	= \SI{6.93e-19}{\joule}
 \]
-The work function $\phi$ describes the amount of energy that is required to free an electron by incident EM radiation (i.e. light). Hence, this is the absolute minimum required energy. Using the generic relation $E - \phi = h f$ we thus get $E - \phi = 0$ and thus $E = \phi$. As we know the energy and Planck's constant, we can solve for the frequency $f$
+The work function $\phi$ describes the amount of energy that is required to
+free an electron by incident EM radiation (i.e. light). Hence, this is the
+absolute minimum required energy. Using the generic relation
+$E - \phi = h f$ we thus get $E - \phi = 0$ and thus $E = \phi$. As we know
+the energy and Planck's constant, we can solve for the frequency $f$
 \[
 	E = h f \quad \Rightarrow \quad f = \frac{E}{h}
 \]
-However, we are interested in the required frequency of the incident EM radiation. Hence, we use the relation $c_0 = \lambda f$. With this we get
+However, we are interested in the required frequency of the incident EM
+radiation. Hence, we use the relation $c_0 = \lambda f$. With this we get
 \[
 	\lambda
 	= \frac{c_0 h}{E}
@@ -37,4 +44,137 @@ However, we are interested in the required frequency of the incident EM radiatio
 	= \SI{2.87e-7}{\meter}
 \]
 
-\lstinputlisting[caption=Exercise 1-1]{./../ch1/ex_1_1.m}
+\lstinputlisting[caption=Exercise 1-2]{./../ch1/ex_1_2.m}
+
+\section{Exercise 1-3}
+At the beginning, the electron is considered to have only KE and no PE. The
+amount of initial KE ($KE_1$) can be calculated with the given initial
+wavelength of $\lambda_1 = \SI{10}{\nano\meter}$. This gives us
+\[
+	KE_1
+	= \frac{1}{2 m_e} \left(\frac{h}{\lambda_1}\right)^2
+	= \frac{1}{2 \SI{9.11e-31}{\kg}} \left(\frac{\SI{6.625e-34}{\joule\second}}{\SI{10}{\nano\meter}}\right)^2
+	= \SI{2.41e-21}{\joule}
+\]
+After going trough the potential of \SI{0.02}{\eV}, the electron gains
+another \SI{0.02}{\eV} worth of KE. Hence, the resulting KE is
+\[
+	KE_2
+	= KE_1 + \SI{0.02}{\eV}
+	= \SI{2.41e-21}{\joule} + \SI{0.02}{\eV}\left(\frac{\SI{1.6e-9}{\joule}}{\SI{1}{\eV}}\right)
+	= \SI{5.61}{\joule}
+\]
+Now that the resulting KE is known, the wavelength of the electron can be
+determined as
+\[
+	\lambda
+	= \frac{h}{\sqrt{2 KE_2 m_e}}
+	= \frac{\SI{6.625e-34}{\joule\second}}{\sqrt{2 \SI{5.61}{\joule} \SI{9.11e-31}{\kg}}}
+\]
+
+\lstinputlisting[caption=Exercise 1-3]{./../ch1/ex_1_3.m}
+
+\section{Exercise 2-1}
+As the particle goes into the barrier, a certain portion of its inital KE
+is exchanged for PE. While the total energy stays the same, the wavelength
+changes as it depends on the KE of the particle. As the particle has lower
+KE, the wavelenght gets larger (i.e. the frequency geth lower) according to
+\[
+	KE = \frac{1}{2 m_e} \left(\frac{h}{\lambda}\right)^2
+	\Rightarrow
+	\lambda = \frac{h}{\sqrt{2 KE m_e}}
+\]
+
+The imaginary part \emph{leads} the real part. This means that the direction
+in which the wave propagates can be determined from the plot. The incident
+wave prior to the particle arriving at the barrier, has a leading imaginary
+part to the right. Hence, the particle is moving to the right and thus
+towards the potential barrier. After the barrier is reached, the wave is
+split in two parts; the incident wave is split in a transmissive and
+reflective part. The transmissive part is the part riht of the barrier, which
+is in the direction of the incident wave. This is evident by the leading
+imaginary part of the wave. However, the reflected part shows an imaginary
+part which is to the left of the real part. Hence, this reflected part is
+propagating in opposite direction of the incident wave.
+
+\section{Exercise 2-2}
+In general, from an electrical engineers point of viwe, the Heisenberg
+uncertainty principle describes the same relation as signals in the time and
+frequency domain when performing the Fourier transforms. If a signal is very
+localized in time (e.g. dirac delta function or step function), it's
+bandwidth is very large (e.g. towards infinite bandwidth or white noise).
+The same holds for the opposite direction. If a signal is very localized in
+the frequency domain (i.e. a perfectly constant sine wave of frequency $f$),
+the signal is very wide-spread in the time domain (i.e. starts in
+$-\infty$ and goes until $+\infty$).
+
+Figure 1.5 shows the wave of a particle which spreads out spatially about
+\SI{20}{\nano\meter}. If we want to know the position of the particle
+described by the shown wave in Figure 1.5, we can not perfectly localize
+it. Hence, we have an uncertainty in position of the particle.
+
+We can see that the center wavelenth is approximately \SI{10}{\nano\meter}.
+However, the wave is not a simple sine wave consisting of a signle frequency
+$f$. In fact, the shown waveform is a Gaussian envelop and this means that
+the shown waveform consists of many different frequencies or wavelengths
+around the center wavelength of \SI{10}{\nano\meter}. The momentum of the
+particle is described by
+\[
+	p = \frac{h}{\lambda}
+\]
+If we want to know the exact momentum of the particle, we need an exact
+value for its wavelength $\lambda$. However, herein lied the difficulty,
+as we do not knwo the exact wavelength of the particle and hence we
+have an uncertainty in the particles momentum.
+
+In Figure 1.5 we see a typical example of a particle, that is we have an
+uncertainty in both position and momentum. However, it would be good to
+imagine the two extreme cases where the uncertainty of either the momentum
+or the position is going towards zero.
+
+\section{Exercise 2-3}
+
+\subsection{1-D Case}
+To derive the unit of the 1-D wavefunction $\psi(x)$ we can analyze the
+normalized probability calculation for the position
+\[
+	\braket{\psi(x)|\psi(x)}
+	= \int_{-\infty}^{+\infty}{\abs{\psi(x)}^2} \dif x
+	= 1
+\]
+The physical interpretation of this equaiton is that the square of the 
+wavefunction gives the probability(density) to find the particle in a
+region of \emph{distance} $x$. If we integrate this along $x$, we get
+the probability that the particle is within the investigated region of $x$.
+
+In this equation we see that we integrate over distance ($\dif x$). Hence,
+the integration gives a dimension of length [L]. As the result is $1$,
+which is dimensionless, the integrand must be of the inverse
+unit, i.e. $[L^{-1}]$. The integrand is the square of the wavefunction
+$\abs{\psi(x)}^2$. Therefore, the wavefunction itself must have the unit of
+$[\sqrt{L^{-1}}]$ or $[L^{\frac{-1}{2}}]$.
+
+\subsection{2-D Case}
+In the 2-D case, we no longer investige a simple distance but a \emph{surface}.
+Thus, instead of $\int \dif x$ we now use $\int \dif s$. Analogous to the
+1-D case, we can identify that the integration gives a dimension of $[L^2]$.
+To get a dimensionless result, the square of the wavefunction
+$\abs{\psi(x,y)}^2$ must have the unit of $[L^{-2}$. Therefore, the
+wavefunction itself must have the unit of $[\sqrt{L^{-2]}}]$ or $[L^{-1}]$.
+
+\subsection{3-D Case}
+Analogous to the 3-D case, we investigate a \emph{volume}. Hence, we now
+use $\int \dif V$. The integration thus gives a dimension of $[L^3]$. To
+get a dimensionless result, the square of the wavefunction
+$\abs{\psi(x,y,z)}^2$ must have the unit of $[L^{\frac{-3}{2}}]$.
+
+% \begin{table}[h!]
+% 	\centering
+% 	\caption{Dimension and units of the wavefunction}
+% 	\begin{tabular}{l c c}
+% 		\toprule
+% 		dimension 	& dimension of $\psi$	& unit				\\
+% 		\midrule
+% 		\bottomrule
+% 	\end{tabular}
+% \end{table}
