@@ -57,9 +57,9 @@ end
 
 %% initialize a sine wave in a gaussian envelope
 
-lambda		= 50;			% pulse wavelength
+lambda		= -10;			% pulse wavelength
 sigma		= 50;			% pulse width
-nc			= 150;			% starting position
+nc			= 200;			% starting position
 prl			= zeros(1,NN);	% real part of the state variable
 pim			= zeros(1,NN);	% imaginary part of the state variable
 ptot		= 0.;			% ?
