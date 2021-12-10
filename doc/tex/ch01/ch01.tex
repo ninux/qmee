@@ -101,7 +101,7 @@ propagating in opposite direction of the incident wave.
 In general, from an electrical engineers point of view, the Heisenberg
 uncertainty principle describes the same relation as signals in the time and
 frequency domain when performing the Fourier transforms. If a signal is very
-localized in time (e.g. dirac delta function or step function), it's
+localized in time (e.g. dirac Delta function or step function), it's
 bandwidth is very large (e.g. towards infinite bandwidth or white noise).
 The same holds for the opposite direction. If a signal is very localized in
 the frequency domain (i.e. a perfectly constant sine wave of frequency $f$),
@@ -178,3 +178,124 @@ $\abs{\psi(x,y,z)}^2$ must have the unit of $[L^{\frac{-3}{2}}]$.
 % 		\bottomrule
 % 	\end{tabular}
 % \end{table}
+
+\section{Exercise 2-4}
+The probability that the particle is located in a region $a \leq x \leq b$ is
+given by the integral of the squared wavefunction $\abs{\psi(x)}^2$ over that
+region. Hence, the square of the wavefunction is the probability density.
+However, we must not forget to apply normalization, which is performed by
+setting the integral over the total region equal to 1. If not specified
+otherwise, this is in general $-\infty \leq x \leq +\infty$.
+
+In Figure 1.13 a complex waveform is shown. As stated in the hint to the
+exercise, we can approximate the magnitude (i.e. amplitude) of the shown
+wave picewise for the different regions. First, we assume that the magnitude
+is zero for $x \leq \SI{5}{\nano\m}$ and $x \geq \SI{30}{\nano\m}$. Next,
+we define the amplitudes with a common variable $A$, which is the maximum
+magnitude. Every other value of the magnitude is expressed relative to $A$
+as $kA$. The approximation made is shown in Figure \ref{fig:ex_2_4_magnitude}.
+
+\begin{figure}[h!]
+	\centering
+	\begin{tikzpicture}[scale=1.5]
+		\def\A{2}
+		\def\tk{0.1}
+		\draw[->] (-1,0) -- (8,0) node (xaxis) [below] {$x$};
+		% draw the picewise linear magnitude
+		\draw[thick]
+			(0, 0.0 * \A) -- node [above] {$0$}
+			(1, 0.0 * \A) --
+			(1, 0.1 * \A) -- node [above] {$a_1=\frac{A}{10}$}
+			(2, 0.1 * \A) --
+			(2, 0.5 * \A) -- node [above] {$a_2=\frac{A}{2}$}
+			(3, 0.5 * \A) --
+			(3, 1.0 * \A) -- node [above] {$a_3=A$}
+			(4, 1.0 * \A) --
+			(4, 0.5 * \A) -- node [above] {$a_4=\frac{A}{2}$}
+			(5, 0.5 * \A) --
+			(5, 0.1 * \A) -- node [above] {$a_5=\frac{A}{10}$}
+			(6, 0.1 * \A) --
+			(6, 0.0 * \A) -- node [above] {$0$}
+			(7, 0.0 * \A);
+		% mark ticks
+		\draw (0, \tk) -- (0, -\tk) node [below] {$\SI{0}{\nano\m}$};
+		\draw (1, \tk) -- (1, -\tk) node [below] {$\SI{5}{\nano\m}$};
+		\draw (2, \tk) -- (2, -\tk) node [below] {$\SI{10}{\nano\m}$};
+		\draw (3, \tk) -- (3, -\tk) node [below] {$\SI{15}{\nano\m}$};
+		\draw (4, \tk) -- (4, -\tk) node [below] {$\SI{20}{\nano\m}$};
+		\draw (5, \tk) -- (5, -\tk) node [below] {$\SI{25}{\nano\m}$};
+		\draw (6, \tk) -- (6, -\tk) node [below] {$\SI{30}{\nano\m}$};
+		\draw (7, \tk) -- (7, -\tk) node [below] {$\SI{35}{\nano\m}$};
+		% draw intervals
+		\draw[<->] (1, -5*\tk) -- node [below] {$\Delta x_1$} (2, -5*\tk);
+		\draw[<->] (2, -5*\tk) -- node [below] {$\Delta x_2$} (3, -5*\tk);
+		\draw[<->] (3, -5*\tk) -- node [below] {$\Delta x_3$} (4, -5*\tk);
+		\draw[<->] (4, -5*\tk) -- node [below] {$\Delta x_4$} (5, -5*\tk);
+		\draw[<->] (5, -5*\tk) -- node [below] {$\Delta x_5$} (6, -5*\tk);
+	\end{tikzpicture}
+	\caption{Piecewise approximated magnitude of the wavefunction.}
+	\label{fig:ex_2_4_magnitude}
+\end{figure}
+
+From Figure \ref{fig:ex_2_4_magnitude} we see that the factor are
+$k_3 = 1$, $k_4=k_2=\frac{1}{2}$, and $k_5=k_1=\frac{1}{10}$.
+As we now do not have a continuous function over $x$ but a piecewise
+constant over equidistant intervals (i.e. discrete in amplitide and $x$),
+we can replace the continuous integration with a simple sum.
+\[
+	\int_a^b \abs{\psi(x)}^2 \dif x = 1
+	\quad \rightarrow \quad
+	\sum_{i=1}^{N} {a_i}^2 \Delta x_i = 1
+\]
+As we omit all zero-valued intervals, only five intervals are left where two
+of them are the same due to symmetry, as shown in Figure
+\ref{fig:ex_2_4_magnitude}.
+\[
+	{a_1}^2 \Delta x_1 + {a_2}^2 \Delta x_2 + {a_3}^2 \Delta x_3 + {a_4}^2 \Delta x_4 + {a_5}^2 \Delta x_5 = 1
+\]
+As $a_1 = a_5$ and $a_2 = a_4$, we can reduce the equation to
+\[
+	{a_3}^2 \Delta x_3 + 2 \left({a_4}^2 \Delta x_4\right) + 2 \left({a_5}^2 \Delta x_5\right) = 1
+\]
+If we insert the magnitudes for $a_i$ we get
+\[
+	\left(k_3A\right)^2 \Delta x_1 + 2 \left(k_4A\right)^2 \Delta x_2 + 2 \left(k_5A\right)^2 \Delta x_3 = 1
+\]
+As the intevals are all the same with
+\[
+	\Delta x_1
+	= \SI{10}{\nano\m} - \SI{5}{\nano\m}
+	= \SI{5}{\nano\m}
+	= \Delta x_2 = \dots = \Delta x_5
+	\quad \Rightarrow \quad 
+	\Delta x = \Delta x_1 = \dots = \Delta x_5
+\]
+we can simplify by factorization and get
+\[
+	\Delta x \left( \left(k_3A\right)^2 + 2 \left(k_4A\right)^2 + 2 \left(k_5A\right)^2 \right) = 1
+\]
+To solve for the probabilities $p_i$, we now need to solve for $A^2$, which is
+\[
+	A^2 = \frac{1}{\Delta x \left(k_3^2 + 2 k_4^2 + 2 k_5^2\right)}
+\]
+Knowing the value of $A^2$ allows us to calculate the probabilities for the
+individual intervals.
+\[
+	p_i = {k_i}^2 A^2 \Delta x_i
+\]
+\[
+	\begin{bmatrix}
+		p_3 \\
+		p_4 \\
+		p_5 \\
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		0.658 \\
+		0.164 \\
+		0.007 \\
+	\end{bmatrix}	
+\]
+
+
+\lstinputlisting[caption=Exercise 2-4]{./../ch1/ex_2_4.m}
