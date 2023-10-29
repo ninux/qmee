@@ -7,3 +7,14 @@
 *.bak
 *.*.bak
 *.swp
+*.acn
+*.aux
+*.glo
+*.ist
+*.log
+*.maf
+*.mtc
+*.mtc0
+*.out
+*.synctex.gz
+*.toc
