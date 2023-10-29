@@ -165,8 +165,8 @@ In the 2-D case, we no longer investigate a simple distance but a \emph{surface}
 Thus, instead of $\int \dif x$ we now use $\int \dif s$. Analogous to the
 1-D case, we can identify that the integration gives a dimension of $[L^2]$.
 To get a dimensionless result, the square of the wavefunction
-$\abs{\psi(x,y)}^2$ must have the unit of $[L^{-2}$. Therefore, the
-wavefunction itself must have the unit of $[\sqrt{L^{-2]}}]$ or $[L^{-1}]$.
+$\abs{\psi(x,y)}^2$ must have the unit of $[L^{-2}]$. Therefore, the
+wavefunction itself must have the unit of $[\sqrt{L^{-2}}]$ or $[L^{-1}]$.
 
 \subsection{3-D Case}
 Analogous to the 2-D case, for the 3-D case we investigate a \emph{volume}.
@@ -388,3 +388,36 @@ positive wavelength.
 \lstinputlisting[caption=Exercise 2-5 a]{./../ch1/ex_2_5_a.m}
 \lstinputlisting[caption=Exercise 2-5 b]{./../ch1/ex_2_5_b.m}
 \lstinputlisting[caption=Exercise 2-5 c]{./../ch1/ex_2_5_c.m}
+
+\newpage
+\section{Exercise 3-1}
+
+The expectation value of the position $\braket{x}$ is defined as
+\[
+	\braket{x} = \int_{-\infty}^{\infty} \varPsi^{\ast}(x) x \varPsi(x) \dif x
+\]
+To calculate $\braket{x}$ in the FDTD format, we can use
+\begin{align*}
+	\braket{x} &= \sum_{n=1}^{NN} \left[ \varPsi_{real}(n) - i \varPsi_{imag}(n) \right] (n \cdot \Delta x) \left[ \varPsi_{real}(n) + i \varPsi_{imag}(n) \right] \\
+	&= \sum_{n=1}^{NN} \left[ \varPsi^2_{real}(n) + \varPsi^2_{imag}(n) \right] (n \cdot \Delta x)
+\end{align*}
+This can easily be implemented and added to the existing code, which produces
+the plots showed in 
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{1\linewidth}
+		\includegraphics[width=1\linewidth]{./../ch1/ex_3_1_a_0.png}
+	\end{subfigure}
+	
+	\begin{subfigure}{1\linewidth}
+		\includegraphics[width=1\linewidth]{./../ch1/ex_3_1_a_1.png}
+	\end{subfigure}
+	
+	\begin{subfigure}{1\linewidth}
+		\includegraphics[width=1\linewidth]{./../ch1/ex_3_1_a_2.png}
+	\end{subfigure}
+	
+	\caption{$\lambda = \SI{10}{\nano\m}$.}
+	\label{fig:ex_3_1_a}
+\end{figure}
