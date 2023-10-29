@@ -392,6 +392,8 @@ positive wavelength.
 \newpage
 \section{Exercise 3-1}
 
+\subsection{Expectation Value}
+
 The expectation value of the position $\braket{x}$ is defined as
 \[
 	\braket{x} = \int_{-\infty}^{\infty} \varPsi^{\ast}(x) x \varPsi(x) \dif x
@@ -402,7 +404,7 @@ To calculate $\braket{x}$ in the FDTD format, we can use
 	&= \sum_{n=1}^{NN} \left[ \varPsi^2_{real}(n) + \varPsi^2_{imag}(n) \right] (n \cdot \Delta x)
 \end{align*}
 This can easily be implemented and added to the existing code, which produces
-the plots showed in 
+the plots showed in Figure \ref{fig:ex_3_1_a}.
 
 \begin{figure}
 	\centering
@@ -420,4 +422,30 @@ the plots showed in
 	
 	\caption{$\lambda = \SI{10}{\nano\m}$.}
 	\label{fig:ex_3_1_a}
+\end{figure}
+
+\subsection{Expectation Value with Barrier}
+
+The expectation value $\braket{x}$ is an average scalar value.
+If the particle hits a potential barrier, there is a transmissive
+and reflective part propagating in opposite directions, i.e. the
+particle is split, see Figure \ref{fig:ex_3_1_b}. Hence, an average
+position can be calculated, however, it does not really make sense.
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{1\linewidth}
+		\includegraphics[width=1\linewidth]{./../ch1/ex_3_1_b_0.png}
+	\end{subfigure}
+	
+	\begin{subfigure}{1\linewidth}
+		\includegraphics[width=1\linewidth]{./../ch1/ex_3_1_b_1.png}
+	\end{subfigure}
+	
+	\begin{subfigure}{1\linewidth}
+		\includegraphics[width=1\linewidth]{./../ch1/ex_3_1_b_2.png}
+	\end{subfigure}
+	
+	\caption{$\lambda = \SI{50}{\nano\m}$.}
+	\label{fig:ex_3_1_b}
 \end{figure}
