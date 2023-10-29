@@ -35,21 +35,21 @@ V			    = zeros(1,NN);	% init potential vector
 
 % constant barrier band in center
 for n = NN/2:NN/2+50
-%	V(n) = .15*eV2J;
+    %V(n) = .15*eV2J;
 end
 
 % semiconductor condution band 
 for n = 1 : NN/2
-%	V(n) = .1*eV2J;
+    %V(n) = .1*eV2J;
 end
 
 for n = NN/2+1 : NN
-%	V(n) = .2*eV2J;
+    %V(n) = .2*eV2J;
 end
 
 % electric field
 for n = 1 : NN
-%	V(n) = -(0.2/400)*(n-400)*eV2J;
+    %V(n) = -(0.2/400)*(n-400)*eV2J;
 end
 
 %% initialize a sine wave in a gaussian envelope

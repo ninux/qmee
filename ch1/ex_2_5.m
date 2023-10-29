@@ -35,31 +35,31 @@ V			    = zeros(1,NN);	% init potential vector
 
 % constant barrier band in center
 for n = NN/2:NN/2+50
-    %V(n) = .15*eV2J;
+%	V(n) = .15*eV2J;
 end
 
 % semiconductor condution band 
 for n = 1 : NN/2
-    %V(n) = .1*eV2J;
+%	V(n) = .1*eV2J;
 end
 
 for n = NN/2+1 : NN
-    %V(n) = .2*eV2J;
+%	V(n) = .2*eV2J;
 end
 
 % electric field
 for n = 1 : NN
-    %V(n) = -(0.2/400)*(n-400)*eV2J;
+%	V(n) = -(0.2/400)*(n-400)*eV2J;
 end
 
 %% initialize a sine wave in a gaussian envelope
 
-lambda	= 20;			      % [nm]  pulse wavelength
-sigma		= 50;			      % [nm]  pulse width
-nc			= 200;			    % starting position
+lambda	= 10;			% pulse wavelength
+sigma		= 50;			% pulse width
+nc			= 200;			% starting position
 prl			= zeros(1,NN);	% real part of the state variable
 pim			= zeros(1,NN);	% imaginary part of the state variable
-ptot		= 0.;			      % ?
+ptot		= 0.;			% ?
 
 for n=2:NN-1
     prl(n)  = exp(-1.*((n-nc)/sigma)^2)*cos(2*pi*(n-nc)/lambda);
@@ -83,7 +83,7 @@ fprintf("normalization = %f\n", ptot);	% should have the value 1
 T			  = 0;
 n_step	= 1;
 count   = 0;    
-nos     = 400;  % number of timestepts between plots (equidistant)
+nos     = 200;  % number of timestepts between plots (equidistant)
 nop     = 3;    % number of plots to be made
 
 while nop > count
@@ -144,12 +144,7 @@ while nop > count
     xlabel("nm");
     
     set(gca, "fontsize", 10);
-    if (count == 0)
-      title("Exercise 2-5 b - 1D FDTD Simulation");
-    else
-      title(" ");
-    endif
-    
+    title("Se1-1 - 1D FDTD Simulation");
     grid on;
     
     fig = gcf();
@@ -157,7 +152,7 @@ while nop > count
     x_width = 21;
     y_width = 7;
     set(fig, "PaperPosition", [0 0 x_width y_width]);
-    print(fig, strcat("ex_2_5_b_", num2str(count), ".png"), "-dpng");
+    print(fig, strcat("ex_2_5_", num2str(count), ".png"), "-dpng");
     
     count++;
     n_step = nos;
