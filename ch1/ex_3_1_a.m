@@ -70,7 +70,7 @@ for n=2:NN-1
     ptot	= ptot + prl(n)^2 + pim(n)^2;
 end
 
-pnorm = sqrt(ptot);            % normalization constant
+pnorm = sqrt(ptot);     % normalization constant
 
 % normalize and check
 ptot = 0.;
@@ -105,7 +105,7 @@ while nop > count
             pim(n) = pim(n) + ra*(prl(n-1) -2*prl(n) + prl(n+1)) ...
                    - (dt/hbar)*V(n)*prl(n);
         end
-      end
+    end
     
     % calculate the expected values
     PE = 0.;	% potential energy
