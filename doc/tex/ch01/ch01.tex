@@ -389,6 +389,32 @@ positive wavelength.
 \lstinputlisting[caption=Exercise 2-5 b]{./../ch1/ex_2_5_b.m}
 \lstinputlisting[caption=Exercise 2-5 c]{./../ch1/ex_2_5_c.m}
 
+\subsection{Discussion on Code Efficiency}
+The author's code uses a lot of loops to manipulate the values of the vector
+data. While this is the common way to do it in most programming languages,
+MATLAB and GNU Octave have very specific features to implement such operations
+not just more elegantly in syntax but can also boost performance of the code
+substantially. I have introduced wherever possible such alternative
+implementations but left the original loop code as commented section available
+to the reader.
+
+The performance difference was evaluated using the code for exercise 2-5 with
+the following results.
+
+\begin{table}[h!]
+	\centering
+	\caption{Performance comparison of loops vs. matrix operations.}
+	\begin{tabular}{l c}
+		\hline
+		variant			& time									\\
+		\hline
+		FDTD using for loops 			& \SI{8.17}{\second} 	\\
+		FDTD using matrix operations 	& \SI{1.80}{\second}	\\
+		\hline
+	\end{tabular}
+\end{table}
+
+
 \newpage
 \section{Exercise 3-1}
 
@@ -420,7 +446,7 @@ the plots showed in Figure \ref{fig:ex_3_1_a}.
 		\includegraphics[width=1\linewidth]{./../ch1/ex_3_1_a_2.png}
 	\end{subfigure}
 	
-	\caption{$\lambda = \SI{10}{\nano\m}$.}
+	\caption{$\lambda = \SI{20}{\nano\m}$.}
 	\label{fig:ex_3_1_a}
 \end{figure}
 
@@ -446,6 +472,6 @@ position can be calculated, however, it does not really make sense.
 		\includegraphics[width=1\linewidth]{./../ch1/ex_3_1_b_2.png}
 	\end{subfigure}
 	
-	\caption{$\lambda = \SI{50}{\nano\m}$.}
+	\caption{$\lambda = \SI{20}{\nano\m}$.}
 	\label{fig:ex_3_1_b}
 \end{figure}

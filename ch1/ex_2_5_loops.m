@@ -8,7 +8,7 @@
 ##
 ##############################################################################
 
-## Chapter 1 - Exercise 3-1a
+## Chapter 1 - Exercise 2-5
 ## 1D FDTD simulation of psi
 
 # cleanup environment
@@ -52,31 +52,32 @@ endif
 
 # specification of the potential
 # original code with loops
-#{
+
 V = zeros(1,NN);  # init potential vector
 
 ## potential definitions
 
 # constant barrier band in center
 for n = NN/2:NN/2+50
-    V(n) = .15*eV2J;
+#    V(n) = .15*eV2J;
 end
 
 # semiconductor condution band
 for n = 1 : NN/2
-    V(n) = .1*eV2J;
+#    V(n) = .1*eV2J;
 end
 
 for n = NN/2+1 : NN
-    V(n) = .2*eV2J;
+#    V(n) = .2*eV2J;
 end
 
 # electric field
 for n = 1 : NN
-    V(n) = -(0.2/400)*(n-400)*eV2J;
+#    V(n) = -(0.2/400)*(n-400)*eV2J;
 end
-#}
+
 # new code with potential selection and without loops
+#{
 V = zeros(1,NN);    # initialize potential vector with 0
 
 # potential options
@@ -114,29 +115,32 @@ elseif
     printf("ERROR: invalid potential option, aborting script ...\n");
     return
 endif
+#}
 
 #initialize a sine wave in a gaussian envelope
-lambda  = 20;           # pulse wavelength
+lambda  = 10;           # pulse wavelength
 sigma   = 50;           # pulse width
-nc      = 100;          # starting position
+nc      = 200;          # starting position
 prl     = zeros(1,NN);  # real part of the state variable
 pim     = zeros(1,NN);  # imaginary part of the state variable
 ptot    = 0.;           # total energy
 
 # original code with loops
-#{
+
 for n=2:NN-1
     prl(n)  = exp(-1.*((n-nc)/sigma)^2)*cos(2*pi*(n-nc)/lambda);
     pim(n)  = exp(-1.*((n-nc)/sigma)^2)*sin(2*pi*(n-nc)/lambda);
     ptot    = ptot + prl(n)^2 + pim(n)^2;
 end
-#}
+
 # new code without loops
+#{
 prl(2:NN-1) = exp(-1.*(([2:NN-1]-nc)./sigma).^2) ...
             .* cos((2*pi).*([2:NN-1]-nc)./lambda);
 pim(2:NN-1) = exp(-1.*(([2:NN-1]-nc)./sigma).^2) ...
             .* sin((2*pi).*([2:NN-1]-nc)./lambda);
 ptot = sum(prl.^2) + sum(pim.^2);
+#}
 
 pnorm = sqrt(ptot); # normalization constant
 
@@ -144,17 +148,19 @@ pnorm = sqrt(ptot); # normalization constant
 ptot = 0.;
 
 # original code with loops
-#{
+
 for n=1:NN
     prl(n)  = prl(n)/pnorm;
     pim(n)  = pim(n)/pnorm;
     ptot    = ptot + prl(n)^2 + pim(n)^2;
 end
-#}
+
 # new code without loops
+#{
 prl(1:NN) = prl(1:NN)./pnorm;
 pim(1:NN) = pim(1:NN)./pnorm;
 ptot = sum(prl(1:NN).^2) + sum(pim(1:NN).^2);
+#}
 
 # check normalization for total energy
     norm_limit = (1e-3)*[-1, 1] + 1;
@@ -172,7 +178,7 @@ ptot = sum(prl(1:NN).^2) + sum(pim(1:NN).^2);
 T       = 0;    # absolute time in steps
 n_step  = 1;    # steps per loop
 count   = 0;    # number of loops
-nos     = 1500;  # number of timestepts between plots (equidistant)
+nos     = 200;  # number of timestepts between plots (equidistant)
 nop     = 3;    # number of plots to be made
 
 # perform simulation
@@ -182,7 +188,7 @@ while nop > count
     for m=1:n_step
         T = T+1;
 
-        #{
+
         for n=2:NN-1
             prl(n) = prl(n) ...
                    - ra*(pim(n-1) -2*pim(n) + pim(n+1)) ...
@@ -194,8 +200,9 @@ while nop > count
                    + ra*(prl(n-1) -2*prl(n) + prl(n+1)) ...
                    - (dt/hbar)*V(n)*prl(n);
         end
-        #}
+
         # new code without loops
+        #{
         rng = [2:NN-1];
 
         prl(rng) = prl(rng) ...
@@ -205,21 +212,24 @@ while nop > count
         pim(rng) = pim(rng) ...
                  + ra.*(prl(rng-1) - 2.*prl(rng) + prl(rng+1)) ...
                  - (dt/hbar).*V(rng).*prl(rng);
+        #}
     end
 
     # calculate the expected values
     PE = 0.;    # initialize potential energy
 
     # original code with loops
-    #{
+
     for n=1:NN
         psi(n) = prl(n) + i*pim(n);
         PE     = PE + psi(n)*psi(n)'*V(n);
     end
-    #}
+
     # new code without loops
+    #{
     psi(1:NN) = prl(1:NN) + i.*pim(1:NN);
     PE = sum(psi(1:NN).*conj(psi(1:NN)).*V(1:NN));
+    #}
 
     # check normalization
     check_norm = psi*psi';
@@ -239,29 +249,19 @@ while nop > count
     ke = 0. + j*0.;
 
     # original code with loops
-    #{
+
     for n=2:NN-1
         lap_p = psi(n+1) - 2*psi(n) + psi(n-1);
         ke = ke + lap_p*psi(n)';
     end
-    #}
+
     # new code without loops
+    #{
     rng = [2:NN-1];
     ke = sum((psi(rng+1)-2.*psi(rng)+psi(rng-1)).*conj(psi(rng)));
+    #}
 
     KE = -J2eV*((hbar/del_x)^2/(2*melec))*real(ke);    # kinetic energy
-
-    # original code with loops
-    #{
-    # calculate the expected position
-    x_avg = 0;
-    for n=1:NN
-        x_avg += ((prl(n))^2 + (pim(n))^2) * (n*del_x);
-    endfor
-    #}
-    # new code without loops
-    x_avg = 0.;
-    x_avg = sum( (prl(1:NN).^2 + pim(1:NN).^2) .* [1:NN].*del_x);
 
     # plot results
     figure(count+1);
@@ -278,13 +278,12 @@ while nop > count
     text( 5, -.15, sprintf("KE = %5.3f eV",      KE));        # show KE in plot
     text(30, -.15, sprintf("PE = %5.3f eV",      PE));        # show PE in plot
     text(30,  .15, sprintf("E_t_o_t = %5.3f eV", KE+PE));     # show Etot in plot
-    text(15,  .15, sprintf("<x> = %5.3f nm",     x_avg*1e9)); % show <x> in plot
 
     xlabel("nm");
 
     set(gca, "fontsize", 10);
     if (count == 0)
-        title("Exercise 3-1a - 1D FDTD Simulation");
+        title("Exercise 2-5 - 1D FDTD Simulation");
     else
         title(" ");
     endif
@@ -295,7 +294,7 @@ while nop > count
     x_width = 21;
     y_width = 7;
     set(fig, "PaperPosition", [0 0 x_width y_width]);
-    print(fig, strcat("ex_3_1_a_", num2str(count), ".png"), "-dpng");
+    print(fig, strcat("ex_2_5_", num2str(count), ".png"), "-dpng");
 
     count++;
     n_step = nos;
