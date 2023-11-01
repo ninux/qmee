@@ -8,7 +8,7 @@
 ##
 ##############################################################################
 
-## Chapter 1 - Exercise 3-1b
+## Chapter 1 - Exercise 4-1
 ## 1D FDTD simulation of psi
 
 # cleanup environment
@@ -86,8 +86,9 @@ V = zeros(1,NN);    # initialize potential vector with 0
     C = semiconductor conduction band
     D = one-sided finite wall
     E = linear electric field
+    F = constant electric field
 #}
-potentialOption = "D";
+potentialOption = "F";
 
 if (potentialOption == "A")
     # zero potential
@@ -110,14 +111,17 @@ elseif (potentialOption == "E")
     # linear electric field
     vbm = (0.2/NN)*eV2J;        # max. potential
     V(1:NN) = ([NN:-1:1]')*vbm;
+elseif (potentialOption == "F")
+    vbm = (0.2/NN)*eV2J;        # max. potential
+    V(1:NN) = ([NN/2:-1:-NN/2+1]')*vbm;
 elseif
     printf("ERROR: invalid potential option, aborting script ...\n");
     return
 endif
 
 #initialize a sine wave in a gaussian envelope
-lambda  = 20;           # pulse wavelength
-sigma   = 50;           # pulse width
+lambda  = 40;           # pulse wavelength
+sigma   = 40;           # pulse width
 nc      = 100;          # starting position
 prl     = zeros(1,NN);  # real part of the state variable
 pim     = zeros(1,NN);  # imaginary part of the state variable
@@ -172,7 +176,7 @@ ptot = sum(prl(1:NN).^2) + sum(pim(1:NN).^2);
 T       = 0;    # absolute time in steps
 n_step  = 1;    # steps per loop
 count   = 0;    # number of loops
-nos     = 1500; # number of timestepts between plots (equidistant)
+nos     = 2500; # number of timestepts between plots (equidistant)
 nop     = 3;    # number of plots to be made
 
 # perform simulation
@@ -284,7 +288,7 @@ while nop > count
 
     set(gca, "fontsize", 10);
     if (count == 0)
-        title("Exercise 3-1b - 1D FDTD Simulation");
+        title("Exercise 4-1 - 1D FDTD Simulation");
     else
         title(" ");
     endif
@@ -295,7 +299,7 @@ while nop > count
     x_width = 21;
     y_width = 7;
     set(fig, "PaperPosition", [0 0 x_width y_width]);
-    print(fig, strcat("ex_3_1_b_", num2str(count), ".png"), "-dpng");
+    print(fig, strcat("ex_4_1_", num2str(count), ".png"), "-dpng");
 
     count++;
     n_step = nos;

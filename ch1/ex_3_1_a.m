@@ -172,7 +172,7 @@ ptot = sum(prl(1:NN).^2) + sum(pim(1:NN).^2);
 T       = 0;    # absolute time in steps
 n_step  = 1;    # steps per loop
 count   = 0;    # number of loops
-nos     = 1500;  # number of timestepts between plots (equidistant)
+nos     = 1500; # number of timestepts between plots (equidistant)
 nop     = 3;    # number of plots to be made
 
 # perform simulation

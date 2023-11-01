@@ -450,6 +450,10 @@ the plots showed in Figure \ref{fig:ex_3_1_a}.
 	\label{fig:ex_3_1_a}
 \end{figure}
 
+\clearpage
+
+\lstinputlisting[caption=Exercise 3-1 a]{./../ch1/ex_3_1_a.m}
+
 \subsection{Expectation Value with Barrier}
 
 The expectation value $\braket{x}$ is an average scalar value.
@@ -475,3 +479,74 @@ position can be calculated, however, it does not really make sense.
 	\caption{$\lambda = \SI{20}{\nano\m}$.}
 	\label{fig:ex_3_1_b}
 \end{figure}
+
+\clearpage
+
+\lstinputlisting[caption=Exercise 3-1 b]{./../ch1/ex_3_1_b.m}
+
+\newpage
+\section{Exercise 4-1}
+
+The electric field strength $E$ needs to be converted into a potential $V$
+using the given path length $s$. 
+\[
+	V = E s
+	  = \SI{5e6}{\volt\per\meter} \SI{40e-9}{\meter}
+	  = \SI{0.2}{\volt}
+\]
+The problem does not specify exactly how the potential is laid out,
+however, the solution implies that we should place it such that the
+potential is symmetric starting at $p$ and going to $-p$. Hence,
+we start at \SI{0.1}{\volt} and end at \SI{-0.1}{\volt}.
+
+The simulation results show that the particle looses potential energy
+and gains kinetic energy while moving to the right. So, the particle
+\emph{trades} potential energy for kinetic energy as it moves along
+the potential.
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{1\linewidth}
+		\includegraphics[width=1\linewidth]{./../ch1/ex_4_1_0.png}
+	\end{subfigure}
+	
+	\begin{subfigure}{1\linewidth}
+		\includegraphics[width=1\linewidth]{./../ch1/ex_4_1_1.png}
+	\end{subfigure}
+	
+	\begin{subfigure}{1\linewidth}
+		\includegraphics[width=1\linewidth]{./../ch1/ex_4_1_2.png}
+	\end{subfigure}
+	
+	\caption{$\lambda = \SI{40}{\nano\m}$.}
+	\label{fig:ex_4_1}
+\end{figure}
+
+\clearpage
+
+\lstinputlisting[caption=Exercise 4-1]{./../ch1/ex_4_1.m}
+
+\newpage
+\section{Exercise 4-2}
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{1\linewidth}
+		\includegraphics[width=1\linewidth]{./../ch1/ex_4_2_0.png}
+	\end{subfigure}
+	
+	\begin{subfigure}{1\linewidth}
+		\includegraphics[width=1\linewidth]{./../ch1/ex_4_2_1.png}
+	\end{subfigure}
+	
+	\begin{subfigure}{1\linewidth}
+		\includegraphics[width=1\linewidth]{./../ch1/ex_4_2_2.png}
+	\end{subfigure}
+	
+	\caption{$\lambda = \SI{40}{\nano\m}$.}
+	\label{fig:ex_4_2}
+\end{figure}
+
+\clearpage
+
+\lstinputlisting[caption=Exercise 4-2]{./../ch1/ex_4_2.m}
