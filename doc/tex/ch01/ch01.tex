@@ -550,3 +550,43 @@ the potential.
 \clearpage
 
 \lstinputlisting[caption=Exercise 4-2]{./../ch1/ex_4_2.m}
+
+\newpage
+\section{Exercise 5-1}
+
+The simulation shows an initial amplitude of approx. \SI{0.15}{\eV}. After
+the barrier, we see the transmitted wave with an amplitude of approx.
+\SI{0.03}{\eV} and the reflected wave with an amplitude of approx.
+\SI{0.1}{\eV}.
+%
+The probability of a particle being in a specified region of $x$ is
+determined by
+%
+\[
+	P = \int_{x_1}^{x_2} \abs{\varPsi(x)}^2 \dif x
+\]
+%
+The exact solution would be to calculate it with the above integral
+for both regions, i.e. left of the barrier for the reflected and right of
+the barrier for the transmitted wave. However, a rough estimation can be
+found by just using the relative amplitudes for the reflected wave
+$A_{rr} = 3$ and the transmitted wave $A_{tr} = 1$. To get a relative
+probability for the particle being transmitted, we can calculate
+%
+\begin{align*}
+	P_{tr}
+		&= \frac{A_{tr}^2}{A_{tr}^2 + A_{rr}^2}
+		= \frac{1^2}{3^2 + 1^2}
+		= \frac{1}{9 + 1}
+		= \frac{1}{10}
+		= 0.1 \\
+	P_{rr}
+		&= \frac{A_{rr}^2}{A_{tr}^2 + A_{rr}^2}
+		= \frac{3^2}{3^2 + 1^2}
+		= \frac{9}{9 + 1}
+		= \frac{9}{10}
+		= 0.9 \\
+\end{align*}
+%
+So, the probability of the particle being transmitted is \SI{10}{\percent}
+and the probability of the particle being reflected is \SI{90}{\percent}.
