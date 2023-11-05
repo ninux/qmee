@@ -555,9 +555,11 @@ the potential.
 \section{Exercise 5-1}
 
 The simulation shows an initial amplitude of approx. \SI{0.15}{\eV}. After
-the barrier, we see the transmitted wave with an amplitude of approx.
-\SI{0.03}{\eV} and the reflected wave with an amplitude of approx.
-\SI{0.1}{\eV}.
+the barrier, we see the transmitted wave with an amplitude of
+$a_t \approx \SI{0.03}{\eV}$ and the reflected wave with an amplitude of
+$a_r \approx \SI{0.1}{\eV}$. For simplicity, we can say that the amplitude
+of the reflected wave is three times higher than the transmitted wave with
+$a_r = 3 a_t$.
 %
 The probability of a particle being in a specified region of $x$ is
 determined by
@@ -566,27 +568,62 @@ determined by
 	P = \int_{x_1}^{x_2} \abs{\varPsi(x)}^2 \dif x
 \]
 %
-The exact solution would be to calculate it with the above integral
-for both regions, i.e. left of the barrier for the reflected and right of
-the barrier for the transmitted wave. However, a rough estimation can be
-found by just using the relative amplitudes for the reflected wave
-$A_{rr} = 3$ and the transmitted wave $A_{tr} = 1$. To get a relative
-probability for the particle being transmitted, we can calculate
-%
+The exact solution would be to calculate the probability with the above
+integral for both regions, i.e. left of the barrier for the reflected and
+right of the barrier for the transmitted wave. A simple estimation can be
+found by just using the amplitude $a$ with $P = \int_{x} a^2 \dif x$. Using
+this simplification, the probability can be expressed as $P = a^2 \Delta x$,
+which gives us
 \begin{align*}
-	P_{tr}
-		&= \frac{A_{tr}^2}{A_{tr}^2 + A_{rr}^2}
-		= \frac{1^2}{3^2 + 1^2}
-		= \frac{1}{9 + 1}
-		= \frac{1}{10}
-		= 0.1 \\
-	P_{rr}
-		&= \frac{A_{rr}^2}{A_{tr}^2 + A_{rr}^2}
-		= \frac{3^2}{3^2 + 1^2}
-		= \frac{9}{9 + 1}
-		= \frac{9}{10}
-		= 0.9 \\
+	P_t &= {a_t}^2 \Delta x_t \\
+	P_r &= {a_r}^2 \Delta x_r
 \end{align*}
-%
-So, the probability of the particle being transmitted is \SI{10}{\percent}
+Since we are interested in the relative probability that the particle passed
+the barrier, we can express is as
+\[
+	P
+	= \frac{P_t}{P_t + P_r}
+	= \frac{{a_t}^2 \Delta x_t}{{a_t}^2 \Delta x_t + {a_r}^2 \Delta x_r}
+\]
+Assuming that the range for both sides is approximately equal with
+$x_t \approx x_r$, we can further simplify to
+\[
+	P
+	= \frac{P_t}{P_t + P_r}
+	= \frac{{a_t}^2 \Delta x}{({a_t}^2 + {a_r}^2) \Delta x}
+	= \frac{{a_t}^2}{{a_t}^2 + {a_r}^2}
+\]
+Using the relative amplitudes with $a_r = 3 a_t$, the relative probability
+that the particle passed the barrier is
+\[
+	P
+	= \frac{P_t}{P_t + P_r}
+	= \frac{{a_t}^2}{{a_t}^2 + {a_r}^2}
+	= \frac{{a_t}^2}{{a_t}^2 + (3 a_t)^2}
+	= \frac{{a_t}^2}{{a_t}^2 + 9 {a_t}^2}
+	= \frac{{a_t}^2}{10 {a_t}^2}
+	= \frac{1}{10}
+	= 0.1 \\
+\]
+Using the same approach, we can determine the probability for the particle
+being reflected to be
+\[
+	P
+	= \frac{P_r}{P_t + P_r}
+	= \frac{{a_r}^2}{{a_t}^2 + {a_r}^2}
+	= \frac{(3 a_t)^2}{{a_t}^2 + (3 a_t)^2}
+	= \frac{9 {a_t}^2}{{a_t}^2 + 9 {a_t}^2}
+	= \frac{9 {a_t}^2}{10 {a_t}^2}
+	= \frac{9}{10}
+	= 0.9 \\
+\]
+So, the probability of the particle passing the barrier is \SI{10}{\percent}
 and the probability of the particle being reflected is \SI{90}{\percent}.
+
+\newpage
+\section{Generating GIF}
+Instead of just generating a series of individual images, a GIF can also
+be generated using GNU Octave. The FDTD script used in the previous exercises
+was modified such that a GIF is generated.
+
+\lstinputlisting[caption=Experiment 2 - GIF]{./../ch1/experiment_2_gif.m}
