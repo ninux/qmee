@@ -1,0 +1,112 @@
+\chapter{Stationary States}
+
+\newpage
+\section{Exercise 2-1-1}
+The eigenvalues are defined as
+\[
+	E = \epsilon_n = \frac{\hbar^2 \pi^2}{2 m_e a^2} n^2
+\]
+Having a size $a_1 = \SI{10}{\angstrom}$ and $a_2 = \SI{100}{\angstrom}$,
+we can evaluate the eigenvalues and compare them. For this comparison, we
+can reduce the discussion to the ground state $n = 1$ and further, we can
+define that all other variables are the same. Hence, we get
+\[
+	E = \epsilon \underbrace{\frac{\hbar^2 \pi^2}{2 m_e}}_{q} \frac{1}{a^2}
+\]
+This shows that the eigenvalue changes with $a^{-2}$. Thus, a well that is
+ten times smaller has energy levels higher by a factor of 100.
+
+\lstinputlisting[caption=Exercise 2-1]{./../ch2/ex_2_1.m}
+
+\newpage
+\section{Exercise 2-1-2}
+For the infinite well, the $\psi$ has strict boundary conditions with
+$\psi(0) = \psi(a) = 0$. For the finite well, however, this does no longer
+apply and the waveforms \emph{bleeds} into the well with higher energy level.
+This means that there is a non-zero probability that the particle is located
+outside the well. For the lower energy level, the situation is quite similar.
+There is however a major difference, which is that there will be no states
+above \SI{3}{\eV}.
+
+\newpage
+\section{Exercise 2-1-3}
+The probability density of the particle location is given by $\abs{\psi(x)}^2$
+and the probability for the particle being located in interval $[x1, \,x2]$
+is hence given by the integral
+\[
+	P = \int_{x_1}^{x_2} \abs{\psi(x)}^2 \dif x
+\]
+As we have an infinite well, we know that the boundary conditions are
+$\psi(0)=\psi(a)=0$ and hence, only those functions that fulfill these boundary
+conditions are valid solutions for the eigenstates. The first eigenstate of the
+well has a wavelengths of $\lambda = 2 \times \SI{100}{\angstrom}$, the second
+has $\lambda = 2 \times \SI{100}{\angstrom} \div 2$, the third
+$\lambda = 2 \times \SI{100}{\angstrom} \div 3$ and so on. Figure
+\ref{fig:ch02_ex_2_3.png} shows both the $\psi(x)$ and the probability
+density $\abs{\psi(x)}^2$. From the figure we can see the following peaks:
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l l l}
+		\hline
+		$n$	& $\lambda$			& peaks							\\
+		\hline
+		1 	& $2a$ 				& $\frac{1}{2}a$ 				\\
+		2 	& $a$ 				& $k \frac{1}{4}a$, $k=1,3$ 	\\
+		3 	& $\frac{2}{3}a$  	& $k \frac{1}{6}a$, $k=1,3,5$ 	\\
+		4 	& $\frac{1}{2}a$  	& $k \frac{1}{8}a$, $K=1,3,5,7$	\\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{./../ch2/ex_2_3.png}
+	\caption{Eigenstates and probability density for $n={1,2,3,4}$.}
+	\label{fig:ch02_ex_2_3.png}
+\end{figure}
+
+\section{Exercise 2-1-4}
+For $n=1$, the particle is in it's ground state and the eigenvalue is
+therefore the kinetic energy. Hence, we have
+\[
+	KE
+	= E
+	= \epsilon_n
+	= \frac{\hbar^2 \pi^2}{2 m_e a^2} n^2
+	= \SI{3.77e-3}{\eV}
+\]
+
+\section{Exercise 2-1-5}
+The general solution is
+\[
+	\psi(x) = A \sin\left(\frac{n \pi}{a} x\right)
+\]
+and we need to normalize it such that
+\[
+	\int_{-\infty}^{+\infty} \psi^{\ast}(x) \psi(x) \dif x = 1
+\]
+From the normalization we know that
+\[
+	1 = \frac{A^{\ast}A}{2} a
+\]
+We can rearrange it for A and get
+\[
+	A^\ast A = \frac{2}{a}
+\]
+As we still do not know what A is specifically, we can substitute it with a generic complex form as
+\[
+	A = r e^{j \varphi}
+\]
+and hence, we get
+\[
+	r e^{j \varphi} \, r e^{- j \varphi} = \frac{2}{a}
+\]
+From the above equation we see that
+\[
+	r^2 = \frac{2}{a} \quad \Rightarrow \quad r = \sqrt{\frac{2}{a}}
+\]
+while $\phi$ can be any angle as they cancel out. So, the general solution for $A$ is
+\[
+	A = \sqrt{\frac{2}{a}} e^{j \varphi} \quad, \mathrm{arbitrary } \, \varphi
+\]

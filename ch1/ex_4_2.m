@@ -87,6 +87,7 @@ V = zeros(1,NN);    # initialize potential vector with 0
     D = one-sided finite wall
     E = linear electric field
     F = constant electric field
+    G = bipolar linear electric field
 #}
 potentialOption = "G";
 

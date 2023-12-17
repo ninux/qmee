@@ -118,9 +118,9 @@ endif
 #}
 
 #initialize a sine wave in a gaussian envelope
-lambda  = 10;           # pulse wavelength
+lambda  = 40;           # pulse wavelength
 sigma   = 50;           # pulse width
-nc      = 200;          # starting position
+nc      = 100;          # starting position
 prl     = zeros(1,NN);  # real part of the state variable
 pim     = zeros(1,NN);  # imaginary part of the state variable
 ptot    = 0.;           # total energy
@@ -176,10 +176,10 @@ ptot = sum(prl(1:NN).^2) + sum(pim(1:NN).^2);
 
 # parameters for the FDTD simulation
 T       = 0;    # absolute time in steps
-n_step  = 1;    # steps per loop
+n_step  = 100;    # steps per loop
 count   = 0;    # number of loops
 nos     = 200;  # number of timestepts between plots (equidistant)
-nop     = 3;    # number of plots to be made
+nop     = 10;    # number of plots to be made
 
 # perform simulation
 while nop > count
@@ -224,6 +224,8 @@ while nop > count
         psi(n) = prl(n) + i*pim(n);
         PE     = PE + psi(n)*psi(n)'*V(n);
     end
+
+    printf("PE = %f", PE)
 
     # new code without loops
     #{
